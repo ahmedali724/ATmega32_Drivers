@@ -1,16 +1,15 @@
-# Atmega32 HAL and MCAL Drivers
+# ATmega32 HAL and MCAL Drivers
 
 Welcome to the Atmega32 Hardware Abstraction Layer (HAL) and Microcontroller Abstraction Layer (MCAL) Drivers repository! This repository provides comprehensive hardware abstraction and microcontroller abstraction layers for the Atmega32 microcontroller, along with drivers for various peripherals.
 
 ## Overview
 
-The Atmega32 HAL and MCAL Drivers repository aims to simplify development for Atmega32 microcontroller-based projects by providing reusable and modular code for handling hardware interfaces and low-level microcontroller operations. Whether you're a beginner or an experienced embedded systems developer, these layers and drivers can help you save time and effort in your projects.
+The Atmega32 HAL and MCAL Drivers repository aim to simplify development for Atmega32 microcontroller-based projects by providing reusable and modular code for handling hardware interfaces and low-level microcontroller operations. Whether you're a beginner or an experienced embedded systems developer, these layers and drivers can help you save time and effort in your projects.
 
 ## Features
 
-- **HAL (Hardware Abstraction Layer)**: Abstracts hardware interfaces such as GPIO, UART, SPI, ADC, etc., providing a consistent API for interacting with these peripherals.
-- **MCAL (Microcontroller Abstraction Layer)**: Abstracts low-level microcontroller operations, including register-level access, interrupt handling, clock management, etc.
-- **Peripheral Drivers**: Pre-implemented drivers for various peripherals commonly found in Atmega32-based systems, such as UART, SPI, ADC, Timer, etc.
+- **HAL (Hardware Abstraction Layer)**: Abstracts hardware interfaces such as LCD, KEYPAD, LM35, MOTOR, etc., providing a consistent API for interacting with these peripherals.
+- **MCAL (Microcontroller Abstraction Layer)**: Pre-implemented drivers for various peripherals commonly found in Atmega32-based systems, such as UART, SPI, ADC, Timer, etc.
 - **Modular and Reusable Code**: Designed for easy integration into projects, with modular code structure facilitating code reuse and scalability.
 - **Well-documented**: Extensive documentation and comments are provided throughout the codebase to aid understanding and usage.
 
