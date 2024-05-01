@@ -8,10 +8,10 @@
  ============================================================================
  */
 
+#include "gpio.h"
+#include "timer0.h"
 #include "motor.h"
 #include "common_macros.h"
-#include "gpio.h"
-#include "timer0_pwm.h"
 
 /*
  * Description :
@@ -20,13 +20,23 @@
  */
 void DcMotor_Init(void)
 {
+	/* Make The Configuration Of Timer0 To Be in FAST PWM Mode */
+	TIMER0_ConfigType TIMER0_CONFIG =
+	{ 0, 0, FAST_PWM_MODE, PRESCALER_8, CTC_CLEAR__PWM_NON_INVERTING };
+
+	/* Init Timer0 in FAST PWM Mode */
+	Timer0_init(&TIMER0_CONFIG);
+
+	/* Set OC0 pin direction as output */
+	GPIO_setupPinDirection(OC0_PORTID, OC0_PINID, PIN_OUTPUT);
+
 	/* Set IN1 and IN2 pins direction as output */
-	GPIO_setupPinDirection(MOTOR_PORT_ID, MOTOR_IN1_PIN_ID, PIN_OUTPUT);
-	GPIO_setupPinDirection(MOTOR_PORT_ID, MOTOR_IN2_PIN_ID, PIN_OUTPUT);
+	GPIO_setupPinDirection(MOTOR_PORTID, MOTOR_IN1_PINID, PIN_OUTPUT);
+	GPIO_setupPinDirection(MOTOR_PORTID, MOTOR_IN2_PINID, PIN_OUTPUT);
 
 	/* Stop motor as initial state */
-	GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN1_PIN_ID, LOGIC_LOW);
-	GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN2_PIN_ID, LOGIC_LOW);
+	GPIO_writePin(MOTOR_PORTID, MOTOR_IN1_PINID, LOGIC_LOW);
+	GPIO_writePin(MOTOR_PORTID, MOTOR_IN2_PINID, LOGIC_LOW);
 }
 
 /*
@@ -41,19 +51,20 @@ void DcMotor_Rotate(DcMotor_State a_state, uint8 a_speed)
 	{
 	case CLOCK_Wise:
 		/* Clock wise mode => (IN1 = 1 and INT2 = 0) */
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN1_PIN_ID, LOGIC_HIGH);
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN2_PIN_ID, LOGIC_LOW);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN1_PINID, LOGIC_HIGH);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN2_PINID, LOGIC_LOW);
 		break;
 	case ANTI_CLOCK_WISE:
 		/* Anti clock wise mode => (IN1 = 0 and INT2 = 1) */
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN1_PIN_ID, LOGIC_LOW);
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN2_PIN_ID, LOGIC_HIGH);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN1_PINID, LOGIC_LOW);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN2_PINID, LOGIC_HIGH);
 		break;
 	default:
 		/* Any case else, the motor be in stop mode */
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN1_PIN_ID, LOGIC_LOW);
-		GPIO_writePin(MOTOR_PORT_ID, MOTOR_IN2_PIN_ID, LOGIC_LOW);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN1_PINID, LOGIC_LOW);
+		GPIO_writePin(MOTOR_PORTID, MOTOR_IN2_PINID, LOGIC_LOW);
 	}
+
 	/* Call the PWM function and give it the speed */
-	PWM_Timer0_Start(a_speed);
+	Timer0_PWM_Start(a_speed);
 }

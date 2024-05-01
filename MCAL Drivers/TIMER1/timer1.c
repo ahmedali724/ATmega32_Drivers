@@ -113,8 +113,8 @@ void Timer1_deInit(void)
 	OCR1A_REG = 0;
 
 	/* Disable the Output Compare A match and Overflow interrupt */
-	TIMSK_REG.Bits.OCIE1A_Bit = 1;
-	TIMSK_REG.Bits.TOIE1_Bit = 1;
+	TIMSK_REG.Bits.OCIE1A_Bit = 0;
+	TIMSK_REG.Bits.TOIE1_Bit = 0;
 
 	/* Reset the global pointer value */
 	g_callBackPtr = NULL_PTR;

@@ -19,20 +19,18 @@
 
 typedef enum
 {
-	STOP,
-	ANTI_CLOCK_WISE,
-	CLOCK_Wise
+	STOP, ANTI_CLOCK_WISE, CLOCK_Wise
 } DcMotor_State;
 
 /*******************************************************************************
  *                                Definitions                                  *
  *******************************************************************************/
 
-#define MOTOR_PORT_ID 		PORTB_ID
-#define MOTOR_IN1_PIN_ID 	PIN0_ID
-#define MOTOR_IN2_PIN_ID 	PIN1_ID
+#define MOTOR_PORTID			PORTB_ID
+#define MOTOR_IN1_PINID			PIN0_ID
+#define MOTOR_IN2_PINID			PIN1_ID
 
-#define MOTOR_MAX_SPEED 	100
+#define MOTOR_MAX_SPEED			100
 
 /*******************************************************************************
  *                              Functions Prototypes                           *
