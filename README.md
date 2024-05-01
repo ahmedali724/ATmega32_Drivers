@@ -28,13 +28,17 @@ atmega32_HAL_MCAL_Drivers/
 │   ├── LCD/          
 │   ├── LM35/         
 │   ├── MOTOR/           
-│   ├── ULTRASONIC_SENSOR/           
+│   ├── ULTRASONIC_SENSOR/
+│   ├── SOIL_SENSOR/
+│   ├── WATER_PUMP/          
 │
 ├── MCAL/                # Microcontroller Abstraction Layer
-│   ├── ADC/    
+│   ├── ADC/
+│   ├── EXTERNAL_INTERRUPT/     
 │   ├── GPIO/       
-│   ├── ICU/          
-│   ├── TIMER0_PWM/         
+│   ├── ICU/
+│   ├── SPI/          
+│   ├── TIMER0/         
 │   ├── TIMER1/         
 │   ├── TWI/         
 │   ├── UART/         
